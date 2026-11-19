@@ -1,0 +1,16 @@
+# Archivos temporales de Office
+~$*
+
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+
+# Bases de datos locales y respaldos
+*.bak
+*.mdf
+*.ldf
+
+# Credenciales (nunca subirlas)
+.env
