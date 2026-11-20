@@ -115,6 +115,20 @@ public class FrmPrincipal : Form
         btnInicio.Size = new Size(170, 38);
         btnInicio.Location = new Point(15, 120);
 
+        // Abre la pantalla de transacciones
+        Button btnTransacciones = new Button();
+        btnTransacciones.Text = "Transacciones";
+        btnTransacciones.BackColor = azulOscuro;
+        btnTransacciones.ForeColor = Color.White;
+        btnTransacciones.FlatStyle = FlatStyle.Flat;
+        btnTransacciones.FlatAppearance.BorderSize = 0;
+        btnTransacciones.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#1B4466");
+        btnTransacciones.TextAlign = ContentAlignment.MiddleLeft;
+        btnTransacciones.Padding = new Padding(10, 0, 0, 0);
+        btnTransacciones.Size = new Size(170, 38);
+        btnTransacciones.Location = new Point(15, 168);
+        btnTransacciones.Click += BtnTransacciones_Click;
+
         // Quién tiene la sesión abierta
         Label lblUsuario = new Label();
         lblUsuario.Text = Sesion.Nombre + Environment.NewLine + Sesion.Rol;
@@ -125,6 +139,7 @@ public class FrmPrincipal : Form
 
         Button btnSalir = new Button();
         btnSalir.Text = "Salir";
+        btnSalir.BackColor = azulOscuro;
         btnSalir.ForeColor = Color.White;
         btnSalir.FlatStyle = FlatStyle.Flat;
         btnSalir.FlatAppearance.BorderColor = Color.White;
@@ -135,6 +150,7 @@ public class FrmPrincipal : Form
         menu.Controls.Add(lblNexo);
         menu.Controls.Add(lblPresupuesto);
         menu.Controls.Add(btnInicio);
+        menu.Controls.Add(btnTransacciones);
         menu.Controls.Add(lblUsuario);
         menu.Controls.Add(btnSalir);
         Controls.Add(menu);
@@ -257,6 +273,14 @@ public class FrmPrincipal : Form
             grid.Columns[nombre].DefaultCellStyle.FormatProvider = Formato.Cultura;
             grid.Columns[nombre].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
+    }
+
+    // Abre transacciones y, al cerrarla, refresca el panel con los datos nuevos
+    private void BtnTransacciones_Click(object? sender, EventArgs e)
+    {
+        FrmTransacciones pantalla = new FrmTransacciones();
+        pantalla.ShowDialog(this);
+        CargarDatos();
     }
 
     private void BtnSalir_Click(object? sender, EventArgs e)
